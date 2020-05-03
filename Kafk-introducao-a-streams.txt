@@ -33,4 +33,14 @@ kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic LOJA_NOVO_P
 -Descrevendo os detalhes dos tópicos
 kafka-topics.bat --bootstrap-server localhost:9092 --describe
 
+*Definindo um group id, indica que o consumidor deverá receber todas as mensagens, se houver outro consumidor com outro group id, este tambem irá receber todas as mensagens. No entanto, se mais de um consumidor tiver um group id, as mensagens serão distribuidas entre estes consumidores.
 
+*O que aprendemos nessa aula:
+
+O que são produtores
+O que são consumidores
+Criação de tópicos manualmente
+Como instalar e rodar o Kafka
+
+
+ 
