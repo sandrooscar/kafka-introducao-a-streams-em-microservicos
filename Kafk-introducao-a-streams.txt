@@ -30,3 +30,7 @@ Aqui falta definir a partir de quando as mensagens serão lidas
 -Criando consumidor e definindo a partir de aundo as mensagens serão lidas
 kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic LOJA_NOVO_PEDIDO --from-beginning
 
+-Descrevendo os detalhes dos tópicos
+kafka-topics.bat --bootstrap-server localhost:9092 --describe
+
+
