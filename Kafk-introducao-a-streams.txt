@@ -1,0 +1,32 @@
+***AULA01
+Diretório com espaço o kafta "se perde"
+Necessário baixar o zookeeper, no entanto o kafta ja vem com um zookeeper instalado
+
+**Iniciar o zookeeper (utilizado para algumas configurações)
+
+bin\windows\zookeeper-server-start.bat ..\..\config\zookeeper.properties
+
+**Inicializar kafka
+kafka-server-start.bat ..\..\config\server.properties
+
+-Recomentação é que . e underline não se usam ao mesmo tempo para os nomes.
+-Criando topico LOJA_NOVO_PEDIDO
+
+kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic LOJA_NOVO_PEDIDO
+
+-Listando tópicos
+kafka-topics.bat --list --bootstrap-server localhost:9092
+
+-Criando um produtor
+kafka-console-producer.bat --broker-list localhost:9092 --topic LOJA_NOVO_PEDIDO
+
+Na sequencia cada linha digitada é uma mensagem.
+
+-Criando um consumidor
+kafka-console-consumer --bootstrap-server localhost:9092 --topic LOJA_NOVO_PEDIDO
+
+Aqui falta definir a partir de quando as mensagens serão lidas
+
+-Criando consumidor e definindo a partir de aundo as mensagens serão lidas
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic LOJA_NOVO_PEDIDO --from-beginning
+
