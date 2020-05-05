@@ -3,6 +3,7 @@ package alura.com.br.ecommerce;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -18,14 +19,19 @@ public class NewOrderMain {
 		//assincono
 //		producer.send(record);
 		//aguarda a execução, e adiciona uma callback
-		producer.send(record, (data, exception) ->{
+		Callback callback = (data, exception) ->{
 			if(exception != null){
 				exception.printStackTrace();
 				return;
 			}else{
 				System.out.println("sucesso enviando " + data.topic() + ":::partition " + data.partition() + "/ offset " + data.offset() + "/ timestamp " + data.timestamp());
 			}
-		}).get();
+		};
+		String email = "Thank you for your order! We are processing your order!";
+		ProducerRecord<String, String> emailRecord = new ProducerRecord<>("ECOMMERCE_SEND_EMAIL", email, email);
+		
+		producer.send(record, callback).get();
+		producer.send(emailRecord, callback).get();
 	}
 
 	private static Properties properties() {
