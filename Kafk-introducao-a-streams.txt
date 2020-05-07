@@ -73,5 +73,17 @@ Comando para descrever os consumidores
 
 kafka-consumer-groups.bat --bootstrap-server localhost:9092 --describe --all-groups
 
+** MAX POLL
+Para evitar que quando ocorra o rebalanceamento as mensagens não fiquem pendentes de commit pelos consumidores é possivel diminuir o tempo de commit. Podemos configurar que de no máximo de uma em uma mensagem seja realizado o commit.
+
+Diminui a chance de processar duas vezes a mesma mensagem por que falhou o commit. A maioria das empresas usa valor 1 nesta propriedade para garantir o commit, se deixar sem valor, o kafka define a partir de quantas mensagens recebidas será feito o commit. 
+
+O que aprendemos nessa aula:
+
+Como rodar diversos consumidores no mesmo grupo
+Como paralelizar tarefas
+A importância da chave para hash
+Cuidado com poll longo
+
 
 
