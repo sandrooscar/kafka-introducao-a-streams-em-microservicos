@@ -78,6 +78,11 @@ Para evitar que quando ocorra o rebalanceamento as mensagens não fiquem pendent
 
 Diminui a chance de processar duas vezes a mesma mensagem por que falhou o commit. A maioria das empresas usa valor 1 nesta propriedade para garantir o commit, se deixar sem valor, o kafka define a partir de quantas mensagens recebidas será feito o commit. 
 
+Pergunta: Os dados em disco ficam no broker correto ? Controle de partição, offset e grupos de consumo ficam com o zookeeper ?
+
+Ou seja para cada requisição para o consumidor ele primeiro passa no zookeeper e depois vai fisicamente buscar o dado no kafka correto ?
+R: sim
+
 O que aprendemos nessa aula:
 
 Como rodar diversos consumidores no mesmo grupo
