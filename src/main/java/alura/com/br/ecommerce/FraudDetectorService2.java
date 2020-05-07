@@ -12,7 +12,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
-public class FraudDetectorService {
+public class FraudDetectorService2 {
 	public static void main(String[] args) {
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(properties());
 		//se inscreve no topic desejado para "ouvir"

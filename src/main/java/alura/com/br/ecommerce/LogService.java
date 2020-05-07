@@ -1,7 +1,7 @@
 package alura.com.br.ecommerce;
 
 import java.time.Duration;
-import java.util.Collections;
+import java.util.Date;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
@@ -22,7 +22,7 @@ public class LogService {
 				System.out.println("Found " + records.count() +" records");
 				for (ConsumerRecord<String, String> record : records) {
 					System.out.println("----------------------------------------");
-					System.out.println("LOG: "+record.topic());
+					System.out.println("LOG: "+record.topic() +" "+new Date());
 					System.out.println(record.key());
 					System.out.println(record.value());
 					System.out.println(record.partition());

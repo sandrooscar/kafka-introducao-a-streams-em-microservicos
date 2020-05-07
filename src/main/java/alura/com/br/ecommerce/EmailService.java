@@ -2,6 +2,7 @@ package alura.com.br.ecommerce;
 
 import java.time.Duration;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Properties;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -21,7 +22,7 @@ public class EmailService {
 				System.out.println("Found " + records.count() +" records");
 				for (ConsumerRecord<String, String> record : records) {
 					System.out.println("----------------------------------------");
-					System.out.println("Send email...");
+					System.out.println("Send email..."+" "+new Date());
 					System.out.println(record.key());
 					System.out.println(record.value());
 					System.out.println(record.partition());

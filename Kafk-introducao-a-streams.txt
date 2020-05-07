@@ -42,5 +42,36 @@ O que são consumidores
 Criação de tópicos manualmente
 Como instalar e rodar o Kafka
 
+***AULA02
+Incluido consumidor LogService que monitora as mensagens conforme a expressão regular passada no parâmetro.
 
- 
+Se você têm dois consumidores para o mesmo grupo, a mensagem será enviada para o grupo, porém só um dos consumidores dos mesmo grupo irá receber. Se os dois recebecem a mesagem seria processada duas vezes.
+
+As partições informam ao kafka comom que ele balanceará as mensagens detro do mesmo grupo. 
+
+- O padrão kafta configura uma partição, o consumidor se responsabiliza por várias partes, no entanto, como só estamos trabalhando com uma parte, ele se responsabiliza pra essa parte. Sintetizando, cada consumidor fica com uma partição.
+- O número máximo de paralelização será o número de partições.
+Comando exemplo para reparticionar:
+
+kafka-topics.bat --alter --zookeeper localhost:2181 --topic ECOMMERCE_NEW_ORDER --partitions 3
+
+Configurando o kafka com três partições e dois consumidores, é preciso configurar uma chave, já que é a chave que o kafka usa pra decidir qual partição irá receberá a mensagem(sendo que cada consumidor do grupo é reponsável por uma ou mais partições)
+
+Por exemplo três partições e dois consumidores, o c1 ficara com uma partição e o c2 ficará com as duas restantes, a decisão é do kafka. O kafka também utiliza a chave utilizada no produtor pra definir em qual partição irá cair.
+
+O número de partições deve ser maior ou igual ao número de consumidores do mesmo grupo.
+
+As partições são configuradas no arquivo server.properties
+num.partitions=3
+
+* Cada grupo de consumo recebe todas as mensagens;
+* Dentro de um grupo quando chega uma mensagem, essa mensagem chegará apenas em um consumidor deste grupo;
+* Balanceamento é feito atraves das partições;
+* O número máximo de paralelização é igual ao número de partições;
+* O kafka utiliza a chave para definir em qual partição a mensagem será armazenada.
+Comando para descrever os consumidores
+
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --describe --all-groups
+
+
+
