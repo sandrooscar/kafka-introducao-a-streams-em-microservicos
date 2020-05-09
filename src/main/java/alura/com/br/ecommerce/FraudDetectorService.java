@@ -11,14 +11,15 @@ public class FraudDetectorService {
 
 	public static void executarFraud() {
 		FraudDetectorService fraudService = new FraudDetectorService();
-		KafkaService service = new KafkaService(fraudService.getClass().getSimpleName(), "ECOMMERCE_NEW_ORDER", 
-				fraudService::parse);
-		service.run();
+		try (KafkaService service = new KafkaService(fraudService.getClass().getSimpleName(), "ECOMMERCE_NEW_ORDER",
+				fraudService::parse)) {
+			service.run();
+		}
 	}
 
 	protected void parse(ConsumerRecord<String, String> record) {
 		System.out.println("----------------------------------------");
-		System.out.println("Processing new order, checking for fraud" +" "+new Date());
+		System.out.println("Processing new order, checking for fraud" + " " + new Date());
 		System.out.println(record.key());
 		System.out.println(record.value());
 		System.out.println(record.partition());

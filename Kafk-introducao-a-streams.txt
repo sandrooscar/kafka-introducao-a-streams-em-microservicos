@@ -90,5 +90,15 @@ Como paralelizar tarefas
 A importância da chave para hash
 Cuidado com poll longo
 
+***AULA03
+O que aprendemos nessa aula:
+
+A importância de evitar copy e paste
+Criando nossa camada de abstração
+Criando nosso Dispatcher
+Criando nosso Service
+
+***AULA04
+
 
 
