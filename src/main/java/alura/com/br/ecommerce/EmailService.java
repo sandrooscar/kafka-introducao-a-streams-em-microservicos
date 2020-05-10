@@ -8,13 +8,13 @@ public class EmailService {
 
 	public static void main(String[] args) {
 		EmailService emailService = new EmailService();
-		try (KafkaService service = new KafkaService(EmailService.class.getSimpleName(), "ECOMMERCE_SEND_EMAIL",
+		try (KafkaService<Email> service = new KafkaService<>(Email.class, EmailService.class.getSimpleName(), "ECOMMERCE_SEND_EMAIL",
 				emailService::parse)) {
 			service.run();
 		}
  	}
 
-	private void parse(ConsumerRecord<String, String> record) {
+	private void parse(ConsumerRecord<String, Email> record) {
 		System.out.println("----------------------------------------");
 		System.out.println("Send email..."+" "+new Date());
 		System.out.println(record.key());

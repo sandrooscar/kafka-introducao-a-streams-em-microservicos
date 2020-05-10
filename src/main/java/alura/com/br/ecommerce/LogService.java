@@ -8,7 +8,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 public class LogService {
 	public static void main(String[] args) {
 		LogService logService = new LogService();
-		try (KafkaService service = new KafkaService(LogService.class.getSimpleName(), 
+		try (KafkaService<String> service = new KafkaService(String.class, LogService.class.getSimpleName(), 
 				Pattern.compile("ECOMMERCE.*"), 
 				logService::parse)){
 			service.run();

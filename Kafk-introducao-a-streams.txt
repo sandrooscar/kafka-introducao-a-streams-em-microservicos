@@ -106,6 +106,8 @@ log.dirs=/tmp/kafka-logs
 No zookeeper
 dataDir=/tmp/zookeeper
 
+Para excluir topico:
+kafka-topics.bat --zookeeper localhost:2181 --delete --topic ECOMMERCE.*
 
 
 
