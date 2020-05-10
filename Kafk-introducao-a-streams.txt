@@ -99,6 +99,13 @@ Criando nosso Dispatcher
 Criando nosso Service
 
 ***AULA04
+Por padrão as mensagens são armazenadas em um diretório temporário, para mudar isso é interessante criar um diretorio de dados (zookepeer e kafka).
+No arquivo configs/server.properties alterar a seguinte configuracao
+log.dirs=/tmp/kafka-logs
+
+No zookeeper
+dataDir=/tmp/zookeeper
+
 
 
 

@@ -10,8 +10,8 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
-public class KafkaDispatcher implements Closeable {
-	private KafkaProducer<String, String> producer;
+public class KafkaDispatcher<T> implements Closeable {
+	private KafkaProducer<String, T> producer;
 
 	public KafkaDispatcher() {
 		this.producer = new KafkaProducer<>(properties());
@@ -23,13 +23,13 @@ public class KafkaDispatcher implements Closeable {
 		properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
 		//Iinformar o serializador, tanto chave quanto valor são Strings, necessário informar no properties do Kafka
 		properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-		properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+		properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, GsonSerializer.class.getName());
 		
 		return properties;
 	}
 
-	public void send(String topic, String key, String value) throws InterruptedException, ExecutionException {
-		ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, key, value);
+	public void send(String topic, String key, T value) throws InterruptedException, ExecutionException {
+		ProducerRecord<String, T> record = new ProducerRecord<>(topic, key, value);
 		Callback callback = (data, exception) ->{
 			if(exception != null){
 				exception.printStackTrace();
