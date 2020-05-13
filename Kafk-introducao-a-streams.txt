@@ -121,4 +121,13 @@ Lidando com customização por serviço
 
 ***AULA05
 Criando monorepo
+Mvn package hera todos os JARs dos módulos dos diretórios parent.
+Projetos modulados em microserviços independentes, permitindo a especialização de cada micro serviço quando necessário sem prejudicar os outros microserviços.
+
+O que aprendemos nessa aula:
+
+como criar módulos
+como manter tudo em um mono repo
+como gerenciar dependências entre módulos
+como gerar os binários de cada módulo
 
